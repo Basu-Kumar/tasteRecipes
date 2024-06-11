@@ -32,6 +32,7 @@ const Navbar = () => {
         <Link to="/savedRecipes" className="hover:text-orange-500">
           Saved
         </Link>
+
         {!cookies.access_token ? (
           <Link to="/auth" className=" hover:text-orange-500">
             SignIn

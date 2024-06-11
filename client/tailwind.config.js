@@ -2,7 +2,18 @@
 module.exports = {
   content: ["./src/**/*.{html,js}"],
   theme: {
-    extend: {},
+    extend: {
+      height: {
+        100: "28rem",
+      },
+      text: {
+        xm: "0.83rem",
+      },
+      width: {
+        wfit: "-webkit-fill-available",
+        112: "30rem",
+      },
+    },
   },
   plugins: [],
 };

@@ -47,9 +47,9 @@ router.get("/savedRecipes/ids/:userId", async (req, res) => {
   }
 });
 
-router.get("/savedRecipes", async (req, res) => {
+router.get("/savedRecipes/:userId", async (req, res) => {
   try {
-    const user = await userModel.findById(req.body.userID);
+    const user = await userModel.findById(req.params.userId);
     const savedRecipes = await recipeModel.find({
       _id: { $in: user.savedRecipes },
     });
