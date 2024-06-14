@@ -2,8 +2,11 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useGetUserId } from "../hooks/useGetUserId";
+import { useCookies } from "react-cookie";
 const CreateRecipes = () => {
   const userId = useGetUserId();
+  const [cookies] = useCookies(["access_token"]);
+  const [errorMessage, setErrorMessage] = useState(null);
   const [recipe, setRecipe] = useState({
     name: "",
     ingredients: [],
@@ -39,17 +42,24 @@ const CreateRecipes = () => {
     try {
       const response = await axios.post(
         "http://localhost:8000/recipes",
-        recipe
+        recipe,
+        { headers: { authorization: cookies.access_token } }
       );
       console.log(response);
       navigate("/");
     } catch (err) {
+      setErrorMessage(err.response.data.message);
       console.log(err);
     }
   };
 
   return (
     <div className=" bg-orange-100 p-2 ">
+      {errorMessage && (
+        <div className="m-auto text-center text-lg text-orange-700 mb-4 p-2 bg-red-200 w-44 rounded-md">
+          {errorMessage}
+        </div>
+      )}
       <h1 className="text-center font-serif font-extrabold text-orange-700 text-2xl mb-2">
         Add Your Favourite Recipe
       </h1>
