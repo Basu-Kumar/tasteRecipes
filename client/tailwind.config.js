@@ -11,7 +11,7 @@ module.exports = {
       },
       width: {
         wfit: "-webkit-fill-available",
-        112: "30rem",
+        112: "32rem",
       },
     },
   },

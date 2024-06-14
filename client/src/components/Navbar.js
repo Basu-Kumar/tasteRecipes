@@ -26,19 +26,21 @@ const Navbar = () => {
         <Link to="/" className="hover:text-orange-500">
           Home
         </Link>
-        <Link to="/createRecipes" className=" hover:text-orange-500">
-          Create
-        </Link>
-        <Link to="/savedRecipes" className="hover:text-orange-500">
-          Saved
-        </Link>
 
         {!cookies.access_token ? (
           <Link to="/auth" className=" hover:text-orange-500">
             SignIn
           </Link>
         ) : (
-          <button onClick={handleLogout}>logout</button>
+          <>
+            <Link to="/createRecipes" className=" hover:text-orange-500">
+              Create
+            </Link>
+            <Link to="/savedRecipes" className="hover:text-orange-500">
+              Saved
+            </Link>
+            <button onClick={handleLogout}>logout</button>
+          </>
         )}
       </div>
     </div>

@@ -21,6 +21,8 @@ const recipeSchema = new mongoose.Schema(
     imageURL: {
       type: String,
       required: true,
+      default:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2yWJxSvt2zkTKm8Qpe-BVs0OmWRL1LhPrEw&s",
     },
     cookingTime: {
       type: Number,

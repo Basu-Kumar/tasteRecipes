@@ -3,7 +3,7 @@ import React, { useState } from "react";
 
 const Register = ({ setLoggedIn }) => {
   const [formData, setFormData] = useState({});
-
+  const [errorMessage, setErrorMessage] = useState(null);
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
@@ -12,16 +12,22 @@ const Register = ({ setLoggedIn }) => {
     e.preventDefault();
 
     try {
+      setErrorMessage(null);
       await axios.post("http://localhost:8000/auth/register", formData);
       alert("registration successfull");
       setLoggedIn(false);
     } catch (err) {
-      alert(err);
+      setErrorMessage(err.response.data.message);
     }
   };
 
   return (
     <div className="h-screen p-4 bg-gradient-to-r from-orange-400 via-yellow-200 to-amber-100 ">
+      {errorMessage && (
+        <div className="m-auto text-center text-lg text-orange-700 mb-4 p-2 bg-red-200 w-48 rounded-md">
+          {errorMessage}
+        </div>
+      )}
       <div className="bg-slate-100 p-4 py-6 h-100 max-w-md rounded-xl sm:m-auto shadow-2xl">
         <h1 className="text-center font-semibold p-2 text-lg">Register Now</h1>
 
