@@ -14,7 +14,7 @@ const Register = ({ setLoggedIn }) => {
     try {
       setErrorMessage(null);
       await axios.post("http://localhost:8000/auth/register", formData);
-      alert("registration successfull");
+
       setLoggedIn(false);
     } catch (err) {
       setErrorMessage(err.response.data.message);
